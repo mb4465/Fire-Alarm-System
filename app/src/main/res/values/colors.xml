@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="status_ok">#00FF00</color>    <!-- Green -->
+    <color name="status_fire">#FF0000</color>  <!-- Red -->
+    <color name="status_offline">#FFFF00</color><!-- Yellow -->
+    <color name="status_warning">#FFFF00</color><!-- Yellow -->
+    <color name="status_unknown">#808080</color> <!-- Gray -->
+    <color name="gray">#808080</color> <!-- Gray -->
+
+    <!-- Light theme colors -->
+    <color name="light_primary">#2196F3</color>
+    <color name="light_primary_variant">#1976D2</color>
+    <color name="light_on_primary">#FFFFFF</color>
+    <color name="light_secondary">#009688</color>
+    <color name="light_secondary_variant">#00796B</color>
+    <color name="light_on_secondary">#000000</color>
+    <color name="light_background">#F5F5F5</color>
+    <color name="light_on_background">#000000</color>
+    <color name="light_surface">#FFFFFF</color>
+    <color name="light_on_surface">#000000</color>
+    <color name="light_error">#B00020</color>
+    <color name="light_on_error">#FFFFFF</color>
+
+</resources>
