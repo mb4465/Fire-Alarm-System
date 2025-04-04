@@ -1,0 +1,17 @@
+<!-- res/drawable/login_button_vector.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="50dp"
+    android:viewportWidth="200"
+    android:viewportHeight="50">
+
+    <path
+        android:fillColor="#70A1FF"
+    android:pathData="M25,0 H175 A25,25 0 0 1 200,25 V25 A25,25 0 0 1 175,50 H25 A25,25 0 0 1 0,25 V25 A25,25 0 0 1 25,0 Z" />
+
+    <path
+        android:fillColor="#C655CD"
+    android:pathData="M25,0 H175 A25,25 0 0 1 200,25 V25 A25,25 0 0 1 175,50 H25 A25,25 0 0 1 0,25 V25 A25,25 0 0 1 25,0 Z"
+    android:translateY="25" />
+
+</vector>

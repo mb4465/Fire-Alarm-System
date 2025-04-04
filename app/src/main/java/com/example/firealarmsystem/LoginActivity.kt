@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         val pin = etPin.text.toString().trim()
 
         if (macAddress.isEmpty() || pin.isEmpty()) {
-            showToast("Please enter MAC Address and PIN")
+            showToast("Please enter Username and Password") // Changed here
             return
         }
 
@@ -60,10 +60,10 @@ class LoginActivity : AppCompatActivity() {
                             return
                         }
                     }
-                    showToast("Incorrect PIN")
+                    showToast("Incorrect Password") // Changed here
 
                 } else {
-                    showToast("No customer found with this MAC Address")
+                    showToast("No user found with this Username") // Changed here
                 }
             }
 

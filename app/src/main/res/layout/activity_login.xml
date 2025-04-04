@@ -1,59 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="#FFFFFF"
     tools:context=".LoginActivity">
 
-    <!-- Login Header -->
-    <TextView
-        android:id="@+id/tv_login_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="24sp"
-        android:textColor="#4CAF50"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp" />
-
-    <!-- Mac Input -->
-    <EditText
-        android:id="@+id/et_mac"
+    <!-- Top container -->
+    <RelativeLayout
+        android:id="@+id/top_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="MAC Address"
-        android:inputType="textEmailAddress"
-        android:padding="12dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:backgroundTint="#4CAF50"
-        android:layout_marginBottom="16dp" />
+        android:background="@color/white"
+        android:paddingBottom="32dp">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/fantom_logo"
+            android:contentDescription="Fantom Logo"
+            android:scaleType="fitXY" />
+    </RelativeLayout>
+
+    <!-- Username Input -->
+    <LinearLayout
+        android:id="@+id/username_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_container"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_mac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type your username"
+            android:inputType="text"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textColorHint="#A9A9A9"
+            android:backgroundTint="#A9A9A9"
+            android:textColor="#000000" />
+
+    </LinearLayout>
 
     <!-- Password Input -->
-    <EditText
-        android:id="@+id/et_pin"
+    <LinearLayout
+        android:id="@+id/password_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pin"
-        android:inputType="textPassword"
-        android:padding="12dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:backgroundTint="#4CAF50"
-        android:layout_marginBottom="24dp" />
+        android:layout_below="@id/username_layout"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_pin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type your password"
+            android:inputType="textPassword"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textColorHint="#A9A9A9"
+            android:backgroundTint="#A9A9A9"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <!-- Forgot Password Link -->
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_layout"
+        android:layout_alignEnd="@id/password_layout"
+        android:layout_marginTop="8dp"
+        android:text="Forgot password?"
+        android:textColor="#808080"
+        android:textSize="12sp" />
 
     <!-- Login Button -->
     <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:backgroundTint="#4CAF50"
-        android:textColor="#FFFFFF"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp" />
-</LinearLayout>
+    android:id="@+id/btn_login"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/forgot_password"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/login_button_gradient"
+    android:text="LOGIN"
+    android:textColor="#FFFFFF"
+    android:textSize="16sp"
+    android:gravity="center"
+    android:minWidth="0dp"
+    android:minHeight="0dp"
+    android:padding="0dp"
+    android:backgroundTint="@null"
+    android:layout_marginTop="32dp"
+    />
+
+</RelativeLayout>

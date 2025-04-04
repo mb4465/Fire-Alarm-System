@@ -1,0 +1,13 @@
+<!-- drawable/login_button_gradient.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"> <!-- Changed to oval for a circular/elliptical shape -->
+    <gradient
+        android:angle="0"
+        android:startColor="#70A1FF"
+        android:endColor="#C655CD" />
+    <corners android:radius="25dp" />
+    <size
+        android:width="100dp"
+    android:height="25dp"
+    />
+</shape>
