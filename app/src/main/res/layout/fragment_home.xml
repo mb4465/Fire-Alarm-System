@@ -5,6 +5,26 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
+    <!-- Top container -->
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/top_container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/white"-->
+<!--        android:paddingBottom="32dp">-->
+
+<!--        &lt;!&ndash; Logo &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/logo_image"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:src="@drawable/dashboarddown"-->
+<!--            android:contentDescription="Fantom Logo"-->
+<!--            android:scaleType="fitXY" />-->
+<!--    </RelativeLayout>-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

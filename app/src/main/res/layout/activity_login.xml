@@ -104,7 +104,7 @@
     <Button
     android:id="@+id/btn_login"
     android:layout_width="300dp"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:layout_below="@id/forgot_password"
     android:layout_centerHorizontal="true"
     android:background="@drawable/login_button_gradient"

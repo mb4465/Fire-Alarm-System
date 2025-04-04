@@ -52,4 +52,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.10")
+    implementation("androidx.core:core-splashscreen:1.0.0")
 }
