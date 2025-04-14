@@ -20,12 +20,12 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.DayNight" />
+            android:theme="@style/Theme.MainActivity.Dark.NoActionBar"  />
 
         <activity
             android:name=".SplashScreen"
         android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.DayNight" >
+            android:theme="@style/Theme.MainActivity.Dark.NoActionBar"  >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

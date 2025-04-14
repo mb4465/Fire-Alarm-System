@@ -22,7 +22,11 @@
 
     <!-- ADD THIS NEW STYLE FOR MAIN ACTIVITY -->
     <style name="Theme.MainActivity.Light.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+<!--    <style name="Theme.MainActivity.Light.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">-->
         <!-- Essential items to prevent the crash -->
+
+        <!-- Set this item to true -->
+        <item name="android:windowFullscreen">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
@@ -45,6 +49,35 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Optional: Make status bar icons dark on light background (API 23+) -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <!-- Corresponding Dark Theme -->
+    <style name="Theme.MainActivity.Dark.NoActionBar" parent="Theme.MaterialComponents.NoActionBar">
+    <!-- Primary brand color for Dark Theme -->
+        <!-- Set this item to true -->
+        <item name="android:windowFullscreen">true</item>
+    <item name="colorPrimary">@color/purple_200</item> <!-- Typically a lighter shade for dark theme -->
+    <item name="colorPrimaryVariant">@color/purple_700</item> <!-- Can often be the same or darker -->
+    <item name="colorOnPrimary">@color/black</item> <!-- Color for text/icons on primary color -->
+
+    <!-- Secondary brand color for Dark Theme -->
+    <item name="colorSecondary">@color/teal_200</item> <!-- Accent color, often lighter -->
+    <item name="colorSecondaryVariant">@color/teal_200</item> <!-- Can be same as secondary or a variant -->
+    <item name="colorOnSecondary">@color/black</item> <!-- Color for text/icons on secondary color -->
+        <!-- Status bar color -->
+        <!-- Using colorPrimaryVariant is common, but you can use a specific dark color too -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Background and Surface Colors (often defaults from parent are fine) -->
+        <!-- <item name="android:colorBackground">@color/custom_dark_background</item> -->
+        <!-- <item name="colorSurface">@color/custom_dark_surface</item> -->
+        <!-- <item name="colorOnBackground">@color/white</item> -->
+        <!-- <item name="colorOnSurface">@color/white</item> -->
+        <!-- <item name="colorError">@color/custom_dark_error</item> -->
+        <!-- <item name="colorOnError">@color/black</item> -->
+
+        <!-- You can add other specific dark theme customizations here -->
+        <!-- For example, custom text appearances, component styles etc. -->
     </style>
 
     <!-- You might have other themes like AppBarOverlay, PopupOverlay here -->
