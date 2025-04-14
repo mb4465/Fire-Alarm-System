@@ -30,7 +30,7 @@
             android:id="@+id/zone2StatusImage"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/fire"
+            android:src="@drawable/playstore"
             />
     </androidx.cardview.widget.CardView>
 

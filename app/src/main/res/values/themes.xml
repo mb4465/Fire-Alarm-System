@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FireAlarmSystem" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <!-- Primary brand color. -->
+    <style name="Theme.FireAlarmSystem" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Customize your base theme here. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -14,19 +14,41 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- Your existing NoActionBar theme (if you had one, keep it or remove if unused) -->
     <style name="Theme.FireAlarmSystem.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.FireAlarmSystem.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!-- ADD THIS NEW STYLE FOR MAIN ACTIVITY -->
+    <style name="Theme.MainActivity.Light.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Essential items to prevent the crash -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
+        <!-- Customize the light theme colors specifically for MainActivity if needed -->
+        <!-- Using Material defaults for light theme here, adjust as necessary -->
+        <item name="colorPrimary">@color/purple_500</item> <!-- Example Primary Color -->
+        <item name="colorPrimaryVariant">@color/purple_700</item> <!-- Darker Primary -->
+        <item name="colorOnPrimary">@color/white</item> <!-- Text/Icons on Primary -->
+
+        <item name="colorSecondary">@color/teal_200</item> <!-- Example Accent Color -->
+        <item name="colorSecondaryVariant">@color/teal_700</item> <!-- Darker Accent -->
+        <item name="colorOnSecondary">@color/black</item> <!-- Text/Icons on Secondary -->
+
+        <!-- Background color for the main content area -->
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="colorSurface">@android:color/white</item>
+        <item name="colorOnSurface">@android:color/black</item> <!-- Text color on background -->
+
+        <!-- Status bar color for this light theme -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Optional: Make status bar icons dark on light background (API 23+) -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <!-- You might have other themes like AppBarOverlay, PopupOverlay here -->
+    <style name="Theme.FireAlarmSystem.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.FireAlarmSystem.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@android:color/white</item>  <!-- Optional: Solid background -->
-        <item name="android:windowFullscreen">true</item>  <!-- Optional: Remove status bar -->
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
 </resources>
