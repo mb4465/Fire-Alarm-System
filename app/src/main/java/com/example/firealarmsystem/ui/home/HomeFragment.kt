@@ -209,7 +209,7 @@ class HomeFragment : Fragment() {
         when (status) {
             1 -> {
                 imageView.setImageResource(R.drawable.good)
-                textView.text = "OK"
+                textView.text = "NORMAL"
                 cardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.status_ok))
             }
             2 -> {

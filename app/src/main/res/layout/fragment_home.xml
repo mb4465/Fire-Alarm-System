@@ -106,7 +106,7 @@
                             android:id="@+id/zone1StatusText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="OK"
+                            android:text="NORMAL"
                             android:textSize="16sp"
                             android:textColor="?android:textColorPrimary"
                             android:layout_marginTop="8dp"/>
@@ -318,7 +318,7 @@
                             android:id="@+id/zone5StatusText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="OK"
+                            android:text="NORMAL"
                             android:textSize="16sp"
                             android:textColor="?android:textColorPrimary"
                             android:layout_marginTop="8dp"/>
