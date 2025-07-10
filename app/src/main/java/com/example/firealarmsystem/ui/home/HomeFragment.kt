@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast // Import Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -14,12 +15,14 @@ import com.google.firebase.database.*
 import com.example.firealarmsystem.R // Replace with your actual package name
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import android.content.Intent // Import Intent
+import com.example.firealarmsystem.LoginActivity // Import LoginActivity for potential redirection
 
 class HomeFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
-    private lateinit var macAddress: String
-    private lateinit var pin: String
+    private lateinit var macAddress: String // This will now hold the actual logged-in MAC address
+    // private lateinit var pin: String // PIN is not used in HomeFragment for data fetching, can be removed if not needed elsewhere
 
     // UI elements
     private lateinit var zone1Card: CardView
@@ -62,14 +65,34 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Retrieve mac address and pin from where you store them
-        // like sharedPreferences, arguments or from loginActivity
-        // Here is a dummy initialization
-        // you need to fetch these values form the login screen
-        macAddress = "AA:BB:CC:DD:EE:FF"
-        pin = "0000"
-        initializeFirebase()
-        loadDataFromFirebase()
+
+        // Retrieve mac address from the hosting activity's intent
+        // LoginActivity passes "customer_id" to MainActivity, which hosts this fragment.
+        val loggedInMacAddress = activity?.intent?.getStringExtra("customer_id")
+
+        if (loggedInMacAddress != null && loggedInMacAddress.isNotEmpty()) {
+            macAddress = loggedInMacAddress
+            // The 'pin' variable in HomeFragment isn't used for data fetching,
+            // so we can remove its initialization or the variable itself if not needed.
+            // pin = "0000" // No longer needed here as it's not used to query Firebase data.
+
+            initializeFirebase()
+            loadDataFromFirebase()
+        } else {
+            // Handle the case where macAddress is not passed or is empty
+            // This might happen if the user tries to open HomeFragment directly without logging in.
+            Log.e("HomeFragment", "MAC Address not received from LoginActivity. Cannot load data.")
+            Toast.makeText(context, "Error: User MAC Address not found. Please log in again.", Toast.LENGTH_LONG).show()
+
+            // Optionally, you might want to redirect to the LoginActivity
+            // if the MAC address is crucial and not present.
+            activity?.let {
+                val intent = Intent(it, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                it.finish() // Finish the current activity to prevent going back to a broken state
+            }
+        }
     }
 
 
@@ -109,9 +132,10 @@ class HomeFragment : Fragment() {
 
     private fun loadDataFromFirebase() {
 
-        // Build the path to the customer's data
+        // Build the path to the customer's data using the retrieved macAddress
         val customerPath = "/customers/$macAddress"
 
+        Log.d("HomeFragment", "Loading data for customer path: $customerPath") // Added log for debugging
 
         // Attach a listener to read the data at our posts reference
         database.child(customerPath).addValueEventListener(object : ValueEventListener {
@@ -119,7 +143,7 @@ class HomeFragment : Fragment() {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if (snapshot.exists()) {
-                    Log.d("Firebase", "Data Exists.")
+                    Log.d("Firebase", "Data Exists for $macAddress.")
                     val batteryLevel = snapshot.child("battery").getValue(Int::class.java) ?: 6
                     val soundState = snapshot.child("sound").getValue(String::class.java) ?: "unmute"
                     updateBatteryIcon(batteryLevel)
@@ -140,21 +164,23 @@ class HomeFragment : Fragment() {
                                     updateZoneUI(zoneId, zoneStatus)
                                 }
                             } else {
-                                Log.w("Firebase", "zoneId or zoneStatus is null");
+                                Log.w("Firebase", "zoneId or zoneStatus is null for a zone in $macAddress");
                             }
                         }
                     } else {
-                        Log.w("Firebase", "Zones do not exist");
+                        Log.w("Firebase", "Zones do not exist for $macAddress");
                     }
 
                 } else {
-                    Log.d("Firebase", "Data Doesn't Exist.")
+                    Log.d("Firebase", "Data Doesn't Exist for $macAddress.")
+                    Toast.makeText(context, "No data found for this account.", Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
-                Log.w("Firebase", "Failed to read value.", error.toException())
+                Log.w("Firebase", "Failed to read value for $macAddress.", error.toException())
+                Toast.makeText(context, "Firebase error: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

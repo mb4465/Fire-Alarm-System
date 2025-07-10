@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="About Fire Alarm System"
+            android:text="About Fantom App"
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="This app is developed by"
+            android:text="This app is developed for"
             android:textSize="16sp"
             android:textColor="?android:textColorSecondary"
             android:layout_marginBottom="8dp"/>
@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Benzone (pvt, ltd)"
+            android:text="Fantom Ltd."
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="?android:textColorPrimary"
@@ -48,7 +48,17 @@
             android:id="@+id/tv_contact_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="benzone@gmail.com"
+            android:text="info@fantomltd.com"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?android:textColorPrimary"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_contact_website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="www.fantomltd.com"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="?android:textColorPrimary"
@@ -57,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="?android:textColorSecondary"
-            android:text="If you encounter any bugs or have feedback, please don't hesitate to contact us."
+            android:text="Fantom Ltd. is dedicated to developing advanced fire safety solutions. Our smart fire alarm systems are designed for reliability, real-time alerts, and seamless connectivity—keeping you protected at all time. If you encounter any bugs or have feedback, please don't hesitate to contact us."
             android:layout_marginBottom="16dp"
             android:textSize="14sp"
             />
