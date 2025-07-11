@@ -28,5 +28,6 @@
     <color name="light_on_surface">#000000</color>
     <color name="light_error">#B00020</color>
     <color name="light_on_error">#FFFFFF</color>
+    <color name="fire_alert_light">#FFFF0000</color>
 
 </resources>
