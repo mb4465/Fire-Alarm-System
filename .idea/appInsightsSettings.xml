@@ -23,9 +23,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.firealarmsystem" />
-                  <option name="mobileSdkAppId" value="1:577719951718:android:a6b27530523266583aa8a7" />
-                  <option name="projectId" value="fire-alarm-be9e9" />
-                  <option name="projectNumber" value="577719951718" />
+                  <option name="mobileSdkAppId" value="1:172574440131:android:8df1d6bde5f5a4f8bb0076" />
+                  <option name="projectId" value="fantom-8dc84" />
+                  <option name="projectNumber" value="172574440131" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

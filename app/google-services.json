@@ -1,33 +1,14 @@
 {
   "project_info": {
-    "project_number": "577719951718",
-    "firebase_url": "https://fire-alarm-be9e9-default-rtdb.firebaseio.com",
-    "project_id": "fire-alarm-be9e9",
-    "storage_bucket": "fire-alarm-be9e9.firebasestorage.app"
+    "project_number": "172574440131",
+    "firebase_url": "https://fantom-8dc84-default-rtdb.firebaseio.com",
+    "project_id": "fantom-8dc84",
+    "storage_bucket": "fantom-8dc84.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:577719951718:android:0523d7d6c4ff94c73aa8a7",
-        "android_client_info": {
-          "package_name": "com.example.firealarm"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyApacZlhTuJxzkA9EGA_YYFL7bDwuNAoL8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:577719951718:android:a6b27530523266583aa8a7",
+        "mobilesdk_app_id": "1:172574440131:android:8df1d6bde5f5a4f8bb0076",
         "android_client_info": {
           "package_name": "com.example.firealarmsystem"
         }
@@ -35,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyApacZlhTuJxzkA9EGA_YYFL7bDwuNAoL8"
+          "current_key": "AIzaSyCyvyj-RbdC6XYF_XQIYR1yogIDP7jpO3A"
         }
       ],
       "services": {

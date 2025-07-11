@@ -10,4 +10,7 @@
     <string name="menu_home">Dashboard</string>
     <string name="menu_pin">Change Pin</string>
     <string name="menu_slideshow">About</string>
+    <string name="menu_logout">Logout</string>
+    <string name="channel_name">Fire Alarm Alerts</string>
+    <string name="channel_description">Notifications for fire and unknown zone statuses.</string>
 </resources>

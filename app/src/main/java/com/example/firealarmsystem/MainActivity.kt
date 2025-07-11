@@ -1,7 +1,9 @@
     package com.example.firealarmsystem
 
+    import android.content.Intent
     import android.os.Bundle
     import android.view.Menu
+    import android.view.MenuItem
     import com.google.android.material.snackbar.Snackbar
     import com.google.android.material.navigation.NavigationView
     import androidx.navigation.findNavController
@@ -13,7 +15,7 @@
     import androidx.appcompat.app.AppCompatActivity
     import com.example.firealarmsystem.databinding.ActivityMainBinding
 
-    class MainActivity : AppCompatActivity() {
+    class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
         private lateinit var appBarConfiguration: AppBarConfiguration
         private lateinit var binding: ActivityMainBinding
@@ -33,11 +35,12 @@
             // menu should be considered as top level destinations.
             appBarConfiguration = AppBarConfiguration(
                 setOf(
-                    R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                    R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_logout
                 ), drawerLayout
             )
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
+            navView.setNavigationItemSelectedListener(this)
         }
 
         override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -49,5 +52,22 @@
         override fun onSupportNavigateUp(): Boolean {
             val navController = findNavController(R.id.nav_host_fragment_content_main)
             return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+        }
+
+        override fun onNavigationItemSelected(item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.nav_logout -> {
+                    // Navigate to LoginActivity
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                    return true
+                }
+            }
+            // Close the navigation drawer when an item is tapped.
+            binding.drawerLayout.closeDrawers()
+            // This is important to allow the normal menu items to be handled by the NavController
+            return super.onOptionsItemSelected(item) || findNavController(R.id.nav_host_fragment_content_main).navigateUp(appBarConfiguration)
         }
     }
