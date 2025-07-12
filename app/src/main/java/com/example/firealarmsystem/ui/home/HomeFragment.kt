@@ -333,12 +333,19 @@ class HomeFragment : Fragment() {
     private fun updateZoneUI(zoneId: Int, zoneStatus: Int) {
         val prevStatus = zonePreviousStatus[zoneId]
 
-        // Check if the status has changed to an alert state (FIRE or UNKNOWN/0)
+        // Check if the status has changed to an alert state (FIRE or WARNING)
         if (isAlertStatus(zoneStatus) && !isAlertStatus(prevStatus)) {
+            // Get the correct status string for the notification
+            val statusString = when (zoneStatus) {
+                0 -> "FIRE"      // Status 0 = FIRE
+                2 -> "WARNING"   // Status 2 = WARNING
+                else -> "UNKNOWN" // Shouldn't happen for alerts
+            }
+
             sendFireAlarmNotification(
                 zoneId,
                 "Zone $zoneId Alert!",
-                "Zone $zoneId status is: ${getStatusString(zoneStatus)}"
+                "Zone $zoneId status is: $statusString"
             )
         } else if (!isAlertStatus(zoneStatus) && isAlertStatus(prevStatus)) {
             // If it transitioned from an alert state to a non-alert state, cancel the notification
@@ -361,16 +368,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun isAlertStatus(status: Int?): Boolean {
-        return status == 2 || status == 0
+        // Only status 0 (FIRE) and 2 (WARNING) are alerts
+        return status == 0 || status == 2
     }
 
     private fun getStatusString(status: Int): String {
         return when (status) {
-            1 -> "NORMAL"
-            2 -> "FIRE"
-            3 -> "OFFLINE"
-            4 -> "WARNING"
-            else -> "UNKNOWN"
+            0 -> "FIRE"       // Status 0 = FIRE
+            1 -> "NORMAL"     // Status 1 = NORMAL
+            2 -> "WARNING"    // Status 2 = WARNING
+            3 -> "OFFLINE"    // Status 3 = OFFLINE
+            else -> "UNKNOWN" // Other values = UNKNOWN
         }
     }
 
@@ -378,27 +386,27 @@ class HomeFragment : Fragment() {
         Log.d("Firebase", "Updating status for imageView and textView with status: $status")
         activity?.runOnUiThread {
             when (status) {
-                1 -> {
-                    imageView.setImageResource(R.drawable.good)
-                    textView.text = "NORMAL"
-                    cardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.status_ok))
-                }
-                0 -> {
+                0 -> {  // FIRE
                     imageView.setImageResource(R.drawable.fire)
                     textView.text = "FIRE"
                     cardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.status_fire))
                 }
-                3 -> {
-                    imageView.setImageResource(R.drawable.disconnect)
-                    textView.text = "OFFLINE"
-                    cardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.status_offline))
+                1 -> {  // NORMAL
+                    imageView.setImageResource(R.drawable.good)
+                    textView.text = "NORMAL"
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.status_ok))
                 }
-                2 -> {
+                2 -> {  // WARNING
                     imageView.setImageResource(R.drawable.ic_sensor_warning)
                     textView.text = "WARNING"
                     cardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.status_warning))
                 }
-                else -> {
+                3 -> {  // OFFLINE
+                    imageView.setImageResource(R.drawable.disconnect)
+                    textView.text = "OFFLINE"
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.status_offline))
+                }
+                else -> {  // UNKNOWN
                     imageView.setImageResource(R.drawable.disconnect)
                     textView.text = "UNKNOWN"
                     cardView.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.status_unknown))
@@ -415,8 +423,9 @@ class HomeFragment : Fragment() {
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
-                setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION), null)
+                setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM), null)
                 enableVibration(true)
+                vibrationPattern = longArrayOf(0, 500, 250, 500) // Custom vibration pattern
             }
             notificationManager.createNotificationChannel(channel)
         }
@@ -449,14 +458,23 @@ class HomeFragment : Fragment() {
             .setContentTitle(title)
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setPriority(NotificationCompat.PRIORITY_MAX) // Highest priority for alarms
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+            .setOngoing(true) // Make notification persistent until dismissed
+            .setOnlyAlertOnce(false) // Alert every time
 
+        // Use alarm sound for fire notifications
+        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        builder.setSound(alarmSound)
+
+        // Add vibration pattern
+        builder.setVibrate(longArrayOf(0, 500, 250, 500))
+
+        // Add full-screen intent for critical alerts
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-            builder.setDefaults(NotificationCompat.DEFAULT_VIBRATE)
+            builder.setFullScreenIntent(pendingIntent, true)
         }
 
         notificationManager.notify(ZONE_NOTIFICATION_BASE_ID + zoneId, builder.build())
