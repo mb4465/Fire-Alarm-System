@@ -3,6 +3,9 @@ package com.example.firealarmsystem
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -58,7 +61,31 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return when {
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                else -> false
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
+    }
+
     private fun login() {
+        if (!isNetworkAvailable()) {
+            showToast(getString(R.string.error_no_internet))
+            return
+        }
+
         val macAddress = etMac.text.toString().trim()
         val pin = etPin.text.toString().trim()
 
@@ -93,7 +120,12 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                showToast("Error: ${error.message}")
+                // Also check for network here, as onCancelled might be due to network issues
+                if (!isNetworkAvailable()) {
+                    showToast(getString(R.string.error_no_internet))
+                } else {
+                    showToast("Error: ${error.message}")
+                }
             }
         })
     }
