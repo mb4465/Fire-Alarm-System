@@ -16,4 +16,10 @@
     <string name="error_no_internet">No internet connection. Please check your network.</string>
     <string name="error_firebase_data">Error retrieving data from server. Please try again later.</string>
     <string name="no_internet_connection_banner">No Internet Connection - System Offline</string>
+
+    <!-- Strings for FirebasePollingService -->
+    <string name="firebase_polling_channel_name">Firebase Polling Service Channel</string>
+    <string name="firebase_polling_channel_description">Channel for background Firebase fire alerts</string>
+    <string name="fire_alert_title">FIRE ALERT!</string>
+    <string name="fire_alert_message">Fire detected in %1$s.</string>
 </resources>

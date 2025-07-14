@@ -21,6 +21,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.registerForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
 import androidx.core.app.NotificationCompat
@@ -107,6 +108,11 @@ class HomeFragment : Fragment() {
 
         // Initialize UI elements
         initViews(binding.root)
+        // In MainActivity onCreate()
+//        val prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+//        val mac = prefs.getString(KEY_MAC_ADDRESS, "NOT FOUND")
+//        val keys = prefs.all.keys.joinToString()
+//        Log.d(TAG, "MAC in prefs: $mac\nKeys: $keys")
 
         // Setup notifications
         notificationManager = NotificationManagerCompat.from(requireContext())
